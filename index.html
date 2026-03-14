@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Compare Traficar pricing plans — Standard, Hourly, and Daily — for Renault Clio V and Arkana. Enter your trip details and find the cheapest option instantly.">
+        content="Porównaj plany cenowe Traficar — Standardowy, Godzinowy i Dobowy — dla Renault Clio V i Arkana. Wpisz dane przejazdu i znajdź najtańszą opcję.">
     <meta name="keywords"
-        content="Traficar, carsharing, calculator, Renault Clio, Renault Arkana, pricing, Poland, car rental cost">
-    <meta property="og:title" content="Traficar Ride Cost Calculator">
+        content="Traficar, carsharing, kalkulator, Renault Clio, Renault Arkana, cennik, Polska, koszt wynajmu auta">
+    <meta property="og:title" content="Kalkulator kosztów Traficar — Znajdź najtańszy plan">
     <meta property="og:description"
-        content="Find the cheapest Traficar pricing plan for your trip. Compare Standard, Hourly, and Daily rates for Clio V and Arkana.">
+        content="Znajdź najtańszy plan cenowy Traficar. Porównaj stawki Standardowe, Godzinowe i Dobowe dla Clio V i Arkana.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="canonical" href="https://traficar-calculator.pages.dev/">
-    <title>Traficar Ride Cost Calculator — Find the Cheapest Plan</title>
+    <title>Kalkulator kosztów Traficar — Znajdź najtańszy plan</title>
     <style>
         * {
             margin: 0;
@@ -241,41 +241,41 @@
 <body>
 
     <div class="container">
-        <h1>Traficar Calculator</h1>
-        <p class="subtitle">Enter your trip details to compare Standard, Hourly, and Daily pricing plans and find the
-            cheapest option.</p>
+        <h1>Kalkulator Traficar</h1>
+        <p class="subtitle">Wpisz dane przejazdu, aby porównać plany i znaleźć
+            najtańszą opcję.</p>
 
         <div class="form-group">
-            <label for="distance">Total Distance <span class="hint">(km)</span></label>
-            <input type="number" id="distance" placeholder="e.g. 25" min="0" step="0.1">
+            <label for="distance">Dystans <span class="hint">(km)</span></label>
+            <input type="number" id="distance" placeholder="np. 25" min="0" step="0.1">
         </div>
 
         <div class="form-group">
-            <label>Total Rental Time <span class="hint">(Start to Finish)</span></label>
+            <label>Czas wynajmu <span class="hint">(od startu do końca)</span></label>
             <div class="time-inputs">
-                <input type="number" id="tHours" placeholder="Hours" min="0">
-                <input type="number" id="tMins" placeholder="Minutes" min="0" max="59">
+                <input type="number" id="tHours" placeholder="Godziny" min="0">
+                <input type="number" id="tMins" placeholder="Minuty" min="0" max="59">
             </div>
-            <div class="error-message" id="rentTimeError">Please enter the rental time.</div>
+            <div class="error-message" id="rentTimeError">Podaj czas wynajmu.</div>
         </div>
 
         <div class="form-group stop-section">
-            <label>Stop Time <span class="hint">(Included in rental time, default 0)</span></label>
+            <label>Czas postoju <span class="hint">(wliczony w czas wynajmu, domyślnie 0)</span></label>
             <div class="time-inputs">
                 <input type="number" id="sHours" placeholder="0" min="0">
                 <input type="number" id="sMins" placeholder="0" min="0" max="59">
             </div>
         </div>
 
-        <button onclick="calculateCost()">Find Optimal Ride</button>
+        <button onclick="calculateCost()">Oblicz najtańszy przejazd</button>
 
         <div class="results" id="results" style="display: none;">
             <div class="car-result" id="clio-result"></div>
             <div class="car-result" id="arkana-result"></div>
         </div>
 
-        <p style="margin-top: 24px; font-size: 11px; color: #aaa; text-align: center;">Not affiliated with or endorsed
-            by Traficar. Pricing may be outdated.</p>
+        <p style="margin-top: 24px; font-size: 11px; color: #aaa; text-align: center;">Strona nie jest powiązana z
+            Traficar. Ceny mogą być nieaktualne.</p>
     </div>
 
     <script>
@@ -315,15 +315,15 @@
             const blocks24h = Math.max(1, Math.ceil(totalHoursDecimal / 24));
 
             // --- CLIO ---
-            let clioKm = generateOfferData("Standard Rate", 4.99 + (km * 2.29) + (stopMins * 0.30), `Start Fee (4.99) + ${km}km*(2.29) + ${stopMins}min Stop*(0.30)`);
-            let clioHour = generateOfferData("Hourly (3h)", (blocks3h * 14.99) + (km * 1.69), `${blocks3h}*3h-Block(14.99) + ${km}km*(1.69)`);
-            let clioDay = generateOfferData("Daily (24h)", (blocks24h * 69.00) + (km * 1.39), `${blocks24h}*24h-Block(69.00) + ${km}km*(1.39)`);
+            let clioKm = generateOfferData("Standardowy", 4.99 + (km * 2.29) + (stopMins * 0.30), `Opłata startowa (4,99) + ${km}km*2,29 + ${stopMins}min postój*0,30`);
+            let clioHour = generateOfferData("Godzinowy (3h)", (blocks3h * 14.99) + (km * 1.69), `${blocks3h}*3h (14,99) + ${km}km*1,69`);
+            let clioDay = generateOfferData("Dobowy (24h)", (blocks24h * 69.00) + (km * 1.39), `${blocks24h}*24h (69,00) + ${km}km*1,39`);
             let clioOffers = [clioKm, clioHour, clioDay].sort((a, b) => a.total - b.total);
 
             // --- ARKANA ---
-            let arkKm = generateOfferData("Standard Rate", 5.99 + (km * 2.60) + (stopMins * 0.30), `Start Fee (5.99) + ${km}km*(2.60) + ${stopMins}min Stop*(0.30)`);
-            let arkHour = generateOfferData("Hourly (3h)", (blocks3h * 19.99) + (km * 2.09), `${blocks3h}*3h-Block(19.99) + ${km}km*(2.09)`);
-            let arkDay = generateOfferData("Daily (24h)", (blocks24h * 99.00) + (km * 1.49), `${blocks24h}*24h-Block(99.00) + ${km}km*(1.49)`);
+            let arkKm = generateOfferData("Standardowy", 5.99 + (km * 2.60) + (stopMins * 0.30), `Opłata startowa (5,99) + ${km}km*2,60 + ${stopMins}min postój*0,30`);
+            let arkHour = generateOfferData("Godzinowy (3h)", (blocks3h * 19.99) + (km * 2.09), `${blocks3h}*3h (19,99) + ${km}km*2,09`);
+            let arkDay = generateOfferData("Dobowy (24h)", (blocks24h * 99.00) + (km * 1.49), `${blocks24h}*24h (99,00) + ${km}km*1,49`);
             let arkOffers = [arkKm, arkHour, arkDay].sort((a, b) => a.total - b.total);
 
             document.getElementById('results').style.display = 'block';
@@ -331,7 +331,7 @@
             function renderResults(carName, offers) {
                 let output = `<div class="car-name">${carName}</div>`;
                 output += `<div class="price">${offers[0].total.toFixed(2)} PLN</div>`;
-                output += `<div class="breakdown"><div class="breakdown-title">All options</div>`;
+                output += `<div class="breakdown"><div class="breakdown-title">Wszystkie opcje</div>`;
 
                 offers.forEach((opt, i) => {
                     const best = i === 0 ? ' is-best' : '';
