@@ -315,15 +315,15 @@
             const blocks24h = Math.max(1, Math.ceil(totalHoursDecimal / 24));
 
             // --- CLIO ---
-            let clioKm = generateOfferData("Standardowy", 4.99 + (km * 2.29) + (stopMins * 0.30), `Opłata startowa (4,99) + ${km}km*2,29 + ${stopMins}min postój*0,30`);
-            let clioHour = generateOfferData("Godzinowy (3h)", (blocks3h * 14.99) + (km * 1.69), `${blocks3h}*3h (14,99) + ${km}km*1,69`);
-            let clioDay = generateOfferData("Dobowy (24h)", (blocks24h * 69.00) + (km * 1.39), `${blocks24h}*24h (69,00) + ${km}km*1,39`);
+            let clioKm = generateOfferData("Standardowy", 4.99 + (km * 2.39) + (stopMins * 0.30), `Opłata startowa (4,99) + ${km}km*2,39 + ${stopMins}min postój*0,30`);
+            let clioHour = generateOfferData("Godzinowy (3h)", (blocks3h * 14.99) + (km * 1.80), `${blocks3h}*3h (14,99) + ${km}km*1,80`);
+            let clioDay = generateOfferData("Dobowy (24h)", (blocks24h * 69.00) + (km * 1.49), `${blocks24h}*24h (69,00) + ${km}km*1,49`);
             let clioOffers = [clioKm, clioHour, clioDay].sort((a, b) => a.total - b.total);
 
             // --- ARKANA ---
-            let arkKm = generateOfferData("Standardowy", 5.99 + (km * 2.60) + (stopMins * 0.30), `Opłata startowa (5,99) + ${km}km*2,60 + ${stopMins}min postój*0,30`);
-            let arkHour = generateOfferData("Godzinowy (3h)", (blocks3h * 19.99) + (km * 2.09), `${blocks3h}*3h (19,99) + ${km}km*2,09`);
-            let arkDay = generateOfferData("Dobowy (24h)", (blocks24h * 99.00) + (km * 1.49), `${blocks24h}*24h (99,00) + ${km}km*1,49`);
+            let arkKm = generateOfferData("Standardowy", 5.99 + (km * 2.69) + (stopMins * 0.30), `Opłata startowa (5,99) + ${km}km*2,69 + ${stopMins}min postój*0,30`);
+            let arkHour = generateOfferData("Godzinowy (3h)", (blocks3h * 19.99) + (km * 2.19), `${blocks3h}*3h (19,99) + ${km}km*2,19`);
+            let arkDay = generateOfferData("Dobowy (24h)", (blocks24h * 99.00) + (km * 1.59), `${blocks24h}*24h (99,00) + ${km}km*1,59`);
             let arkOffers = [arkKm, arkHour, arkDay].sort((a, b) => a.total - b.total);
 
             document.getElementById('results').style.display = 'block';
